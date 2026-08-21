@@ -1,0 +1,31 @@
+# ── JARVIS AI OS — Unified Dependencies ──
+
+# Core & Environment
+python-dotenv>=1.0,<2
+numpy>=1.24,<3
+
+# Audio & Voice Processing (STT / Microphones)
+sounddevice>=0.4.6,<0.6
+faster-whisper>=1.0
+
+# Text-to-Speech (TTS)
+elevenlabs>=1.50,<3
+
+# LLM / AI Brain Providers
+google-generativeai>=0.8.0
+anthropic>=0.40
+
+# Web Dashboard & Networking (Async HTTP & WebSockets)
+aiohttp>=3.9,<4
+websockets>=13.0
+
+# Browser Automation
+playwright>=1.40
+
+# System Utilities & Vision Analysis
+mss>=9.0
+Pillow>=10.0.0
+psutil>=5.9
+
+# Testing & Verification
+pytest>=8.0.0

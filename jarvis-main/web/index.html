@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JARVIS AI — Advanced Cyberpunk Control HUD</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Outfit:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="hud-container">
+        <!-- Top Navigation Header -->
+        <header class="hud-header">
+            <div class="brand">
+                <div class="arc-mini"></div>
+                <div class="brand-text">
+                    <h1>JARVIS <span>v2.5</span></h1>
+                    <p class="subtitle">AI AUTONOMOUS DESKTOP SUITE</p>
+                </div>
+            </div>
+            
+            <div class="header-status">
+                <div class="status-pill online">
+                    <span class="pulse-dot"></span>
+                    <span id="system-status-text">SYSTEM ONLINE</span>
+                </div>
+                <div class="clock-box">
+                    <span id="live-clock">00:00:00</span>
+                    <span id="live-date">2026-08-10</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Content -->
+        <main class="hud-grid">
+            <!-- Left Column: Core ARC Visualizer & AI Command Center -->
+            <section class="hud-col left-col">
+                <!-- ARC Reactor Visualizer Card -->
+                <div class="card arc-card">
+                    <div class="card-header">
+                        <h2><i class="icon">⚛</i> NEURAL INTERFACE</h2>
+                        <span class="badge" id="ai-model-badge">CLAUDE-3.5-SONNET</span>
+                    </div>
+
+                    <div class="arc-container">
+                        <div class="arc-ring outer-ring"></div>
+                        <div class="arc-ring middle-ring"></div>
+                        <div class="arc-ring inner-ring"></div>
+                        <div class="arc-core" id="arc-core-node">
+                            <span class="core-glow"></span>
+                            <span class="core-text" id="arc-state-text">STANDBY</span>
+                        </div>
+                        <canvas id="waveform-canvas" width="360" height="80"></canvas>
+                    </div>
+
+                    <div class="voice-transcript-box">
+                        <span class="transcript-label">LAST TRANSCRIPT / RESPONSE:</span>
+                        <div class="transcript-content" id="live-transcript">Double clap or speak to issue voice commands. Standby mode active.</div>
+                    </div>
+                </div>
+
+                <!-- Command Input & Quick Launcher Card -->
+                <div class="card command-card">
+                    <div class="card-header">
+                        <h2><i class="icon">⚡</i> DIRECT COMMAND INPUT</h2>
+                    </div>
+
+                    <form id="command-form" class="command-form">
+                        <div class="input-group">
+                            <input type="text" id="command-input" placeholder="Type or click 🎙️ to speak commands..." autocomplete="off">
+                            <button type="button" class="btn btn-accent" id="voice-btn" onclick="toggleVoiceInput()" title="Click to Speak">
+                                <span id="voice-btn-icon">🎙️</span> <span id="voice-btn-text">TALK</span>
+                            </button>
+                            <button type="submit" class="btn btn-primary" id="send-cmd-btn">
+                                <span>EXECUTE</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="quick-actions">
+                        <span class="quick-title">QUICK MACROS:</span>
+                        <div class="chip-group">
+                            <button class="chip" onclick="executeQuick('open claude')">⚡ Claude Code</button>
+                            <button class="chip" onclick="executeQuick('open spotify')">🎵 Spotify</button>
+                            <button class="chip" onclick="executeQuick('open cursor')">💻 Cursor IDE</button>
+                            <button class="chip" onclick="executeQuick('open trading dashboard')">📈 Binance BTC</button>
+                            <button class="chip" onclick="executeQuick('what time is it')">🕒 System Status</button>
+                            <button class="chip" onclick="executeQuick('list tasks')">📋 List Tasks</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Live System Activity Logs -->
+                <div class="card log-card">
+                    <div class="card-header">
+                        <h2><i class="icon">📜</i> SYSTEM LOG CONSOLE</h2>
+                        <button class="btn-text" onclick="refreshLogs()">REFRESH</button>
+                    </div>
+                    <div class="log-stream" id="log-stream-box">
+                        <div class="log-line"><span class="log-time">00:00:00</span> <span class="log-tag info">INFO</span> Dashboard loaded. Connected to JARVIS local server.</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Task Management & System Metrics -->
+            <section class="hud-col right-col">
+                <!-- Task Board Card -->
+                <div class="card tasks-card">
+                    <div class="card-header">
+                        <h2><i class="icon">📌</i> TASK & REMINDER BOARD</h2>
+                        <span class="badge count-badge" id="pending-count-badge">0 PENDING</span>
+                    </div>
+
+                    <!-- Add Task Form -->
+                    <form id="task-form" class="task-form">
+                        <input type="text" id="task-text-input" placeholder="New task or reminder..." required>
+                        <div class="task-form-row">
+                            <input type="number" id="task-due-input" placeholder="Due in mins (optional)" min="1" step="1">
+                            <button type="submit" class="btn btn-accent">+ ADD TASK</button>
+                        </div>
+                    </form>
+
+                    <!-- Filter Tabs -->
+                    <div class="task-tabs">
+                        <button class="tab active" id="tab-pending" onclick="setTaskFilter('pending')">Pending</button>
+                        <button class="tab" id="tab-all" onclick="setTaskFilter('all')">All Tasks</button>
+                        <button class="tab" id="tab-completed" onclick="setTaskFilter('completed')">Completed</button>
+                    </div>
+
+                    <!-- Task List Container -->
+                    <div class="task-list" id="task-list-container">
+                        <div class="empty-state">No pending tasks. JARVIS is ready.</div>
+                    </div>
+                </div>
+
+                <!-- System Metrics HUD -->
+                <div class="card metrics-card">
+                    <div class="card-header">
+                        <h2><i class="icon">🛡️</i> SYSTEM METRICS & HARDWARE</h2>
+                    </div>
+                    <div class="metrics-grid">
+                        <div class="metric-box">
+                            <span class="metric-title">OS ENVIRONMENT</span>
+                            <span class="metric-val" id="val-os">Windows 11</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">MICROPHONE</span>
+                            <span class="metric-val" id="val-mic">Default Input</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">AI BRAIN ENGINE</span>
+                            <span class="metric-val" id="val-brain">Claude 3.5 Sonnet</span>
+                        </div>
+                        <div class="metric-box">
+                            <span class="metric-title">VOICE SYNTHESIS</span>
+                            <span class="metric-val" id="val-tts">ElevenLabs + SAPI5</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="hud-footer">
+            <span>JARVIS AI SYSTEM v2.5 — AUTONOMOUS PERSONAL ASSISTANT</span>
+            <span>DEVELOPED FOR STARK-LEVEL EFFICIENCY</span>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>

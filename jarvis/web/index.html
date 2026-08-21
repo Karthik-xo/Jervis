@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="JARVIS AI OS — Next-Generation Autonomous AI Control Hub & Holographic HUD">
+    <title>JARVIS AI OS — Futuristic Command Center</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Orbitron:wght@500;700;800;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Effects -->
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <!-- App Container -->
+    <div id="app-container">
+        <!-- ═════════════════════════════════════════════════════════════════
+             LEFT SIDEBAR NAVIGATION
+             ═════════════════════════════════════════════════════════════════ -->
+        <aside id="sidebar">
+            <div class="sidebar-header">
+                <div class="arc-reactor-logo">
+                    <svg viewBox="0 0 100 100" class="arc-logo-svg">
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--cyan)" stroke-width="2.5" stroke-dasharray="8 4"/>
+                        <circle cx="50" cy="50" r="34" fill="none" stroke="var(--arc-blue)" stroke-width="2"/>
+                        <circle cx="50" cy="50" r="22" fill="none" stroke="var(--cyan)" stroke-width="3"/>
+                        <circle cx="50" cy="50" r="10" fill="var(--cyan)" class="arc-core-pulse"/>
+                        <line x1="50" y1="5" x2="50" y2="22" stroke="var(--cyan)" stroke-width="2"/>
+                        <line x1="50" y1="78" x2="50" y2="95" stroke="var(--cyan)" stroke-width="2"/>
+                        <line x1="5" y1="50" x2="22" y2="50" stroke="var(--cyan)" stroke-width="2"/>
+                        <line x1="78" y1="50" x2="95" y2="50" stroke="var(--cyan)" stroke-width="2"/>
+                    </svg>
+                </div>
+                <div class="brand-info">
+                    <span class="brand-title">JARVIS <span class="brand-version">v2.0</span></span>
+                    <span class="brand-sub">STARK INDUSTRIES</span>
+                </div>
+                <button id="sidebar-toggle" class="sidebar-toggle-btn" title="Toggle Sidebar">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <button class="nav-item active" data-tab="dashboard">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                    <span>Dashboard</span>
+                </button>
+                <button class="nav-item" data-tab="command-center">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    <span>Command Center</span>
+                </button>
+                <button class="nav-item" data-tab="assistant">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    <span>AI Assistant</span>
+                </button>
+                <button class="nav-item" data-tab="voice">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+                    <span>Voice Console</span>
+                </button>
+                <button class="nav-item" data-tab="agents">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>AI Agents</span>
+                </button>
+                <button class="nav-item" data-tab="memory">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/><polygon points="12 6 12 12 16 14"/></svg>
+                    <span>Memory System</span>
+                </button>
+                <button class="nav-item" data-tab="automations">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    <span>Automations</span>
+                </button>
+                <button class="nav-item" data-tab="kb">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                    <span>Knowledge Base</span>
+                </button>
+                <button class="nav-item" data-tab="documents">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                    <span>Documents</span>
+                </button>
+                <button class="nav-item" data-tab="analytics">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span>Analytics</span>
+                </button>
+                <button class="nav-item" data-tab="security">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                    <span>Security</span>
+                </button>
+                <button class="nav-item" data-tab="settings">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                    <span>Settings</span>
+                </button>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="system-status-indicator">
+                    <span class="pulse-dot"></span>
+                    <span class="status-text">JARVIS STATUS: <strong class="text-cyan">ONLINE</strong></span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- ═════════════════════════════════════════════════════════════════
+             MAIN WORKSPACE AREA
+             ═════════════════════════════════════════════════════════════════ -->
+        <div id="main-area">
+            <!-- ── Top Command Bar ──────────────────────────────────────── -->
+            <header id="topbar">
+                <button id="mobile-hamburger" class="topbar-icon-btn mobile-only" title="Toggle Menu">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                </button>
+
+                <div class="global-search-container">
+                    <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" class="search-icon"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                    <input type="text" id="global-search" placeholder="Search anything, Ask JARVIS... (Ctrl + K)" autocomplete="off">
+                    <span class="shortcut-badge">Ctrl K</span>
+
+                    <!-- Search Results Overlay Dropdown -->
+                    <div id="search-results-dropdown" class="search-results-overlay hidden">
+                        <div class="search-results-header">SEARCH RESULTS</div>
+                        <div id="search-results-list" class="search-results-feed"></div>
+                    </div>
+                </div>
+
+                <div class="topbar-right">
+                    <!-- AI Status Pill -->
+                    <div class="pill-badge pill-online">
+                        <span class="dot-online"></span>
+                        <span>AI STATUS: ONLINE</span>
+                    </div>
+
+                    <!-- System Health Meter -->
+                    <div class="pill-badge pill-health">
+                        <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <span>HEALTH: <strong id="health-pct">98%</strong></span>
+                    </div>
+
+                    <!-- Notification Center -->
+                    <button class="topbar-icon-btn" id="btn-notifications" title="Notifications">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+                        <span class="notif-badge">3</span>
+                    </button>
+
+                    <!-- User Profile -->
+                    <div class="user-profile-pill">
+                        <div class="user-avatar">TS</div>
+                        <div class="user-info">
+                            <span class="user-name">TONY STARK</span>
+                            <span class="user-org">STARK INDUSTRIES</span>
+                        </div>
+                    </div>
+
+                    <!-- Clock -->
+                    <div class="clock-display" id="clock-time">08:42:00 PM</div>
+                </div>
+            </header>
+
+            <!-- ── Notifications Drawer Modal ────────────────────────────── -->
+            <div id="notifications-drawer" class="notifications-overlay hidden">
+                <div class="notif-header">
+                    <h3>SYSTEM NOTIFICATIONS</h3>
+                    <button id="btn-close-notif" class="panel-btn">✕</button>
+                </div>
+                <div class="notif-body">
+                    <div class="notif-item">
+                        <span class="notif-icon text-cyan">●</span>
+                        <div class="notif-details">
+                            <strong class="notif-title">System Check Completed</strong>
+                            <span class="notif-text">All AI core modules operational. Zero vulnerabilities detected.</span>
+                            <span class="notif-time">10 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <span class="notif-icon text-teal">●</span>
+                        <div class="notif-details">
+                            <strong class="notif-title">Task Reminder Due</strong>
+                            <span class="notif-text">Review security logs and task schedule.</span>
+                            <span class="notif-time">25 mins ago</span>
+                        </div>
+                    </div>
+                    <div class="notif-item">
+                        <span class="notif-icon text-warning">●</span>
+                        <div class="notif-details">
+                            <strong class="notif-title">Voice Synthesis Ready</strong>
+                            <span class="notif-text">ElevenLabs & SAPI5 fallback online for English & Tamil.</span>
+                            <span class="notif-time">1 hour ago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── Hero Greeting Banner ─────────────────────────────────── -->
+            <section id="hero-banner">
+                <div class="hero-text-content">
+                    <span class="hero-greeting-tag">SYSTEM PROMPT ACTIVE</span>
+                    <h1 class="hero-greeting-title">GOOD EVENING, SIR</h1>
+                    <p class="hero-greeting-sub">How can I assist your workflow and autonomous operations today?</p>
+
+                    <div class="hero-stats-row">
+                        <div class="hero-stat-pill">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/></svg>
+                            <span>WEATHER: <strong>32°C Clear Sky</strong></span>
+                        </div>
+                        <div class="hero-stat-pill">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                            <span id="hero-date">Friday, 11 August 2026</span>
+                        </div>
+                        <div class="hero-stat-pill">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+                            <span>STATUS: <strong class="text-teal">All Systems OPERATIONAL</strong></span>
+                        </div>
+                        <div class="hero-stat-pill">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                            <span>AGENTS: <strong id="agents-count-pill">6/12 Online</strong></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arc Reactor Right Graphic -->
+                <div class="hero-arc-visualizer">
+                    <svg viewBox="0 0 200 200" class="hero-arc-svg">
+                        <circle cx="100" cy="100" r="90" fill="none" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="10 5" class="spin-slow"/>
+                        <circle cx="100" cy="100" r="75" fill="none" stroke="var(--purple)" stroke-width="1" stroke-dasharray="4 4" class="spin-rev"/>
+                        <circle cx="100" cy="100" r="60" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="45" fill="none" stroke="var(--arc-blue)" stroke-width="3" stroke-dasharray="15 5" class="spin-fast"/>
+                        <circle cx="100" cy="100" r="25" fill="rgba(0, 240, 255, 0.15)" stroke="var(--cyan)" stroke-width="2"/>
+                        <circle cx="100" cy="100" r="12" fill="var(--cyan)" class="core-glow-pulse"/>
+                    </svg>
+                    <div class="arc-center-state" id="arc-center-text">STANDBY</div>
+                </div>
+            </section>
+
+            <!-- ── Main Holographic Grid Workspace ─────────────────────── -->
+            <main id="workspace-grid">
+                <!-- PANEL 1: AI Assistant -->
+                <section class="holographic-panel panel-assistant" id="panel-assistant">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                            <h2>AI ASSISTANT CHAT THREAD</h2>
+                        </div>
+                        <button class="panel-btn" id="btn-clear-chat" title="Clear Chat">
+                            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div id="chat-messages" class="chat-thread">
+                            <div class="message assistant-msg">
+                                <div class="msg-avatar">J</div>
+                                <div class="msg-content">
+                                    <span class="msg-sender">JARVIS AI</span>
+                                    <p>Greetings, Sir. All core systems are online and standing by for your command.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Typing / Thinking Indicator -->
+                        <div id="ai-thinking-indicator" class="thinking-bar hidden">
+                            <span class="thinking-dot"></span>
+                            <span class="thinking-dot"></span>
+                            <span class="thinking-dot"></span>
+                            <span class="thinking-label">JARVIS is synthesizing response...</span>
+                        </div>
+
+                        <!-- Prompt Pills -->
+                        <div class="prompt-chips-row">
+                            <button class="chip-btn" data-prompt="Analyze today's meetings and prepare a summary">Analyze meetings</button>
+                            <button class="chip-btn" data-prompt="Search YouTube for relaxing music">Play music</button>
+                            <button class="chip-btn" data-prompt="Take a screenshot">Take screenshot</button>
+                            <button class="chip-btn" data-prompt="System status report">System status</button>
+                        </div>
+
+                        <!-- Input Bar -->
+                        <div class="chat-input-bar">
+                            <input type="text" id="assistant-input" placeholder="Type a command or ask anything..." autocomplete="off">
+                            <button id="btn-assistant-mic" class="mic-trigger-btn" title="Toggle Voice Command">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                            </button>
+                            <button id="btn-assistant-send" class="send-trigger-btn">
+                                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 2: System Intelligence -->
+                <section class="holographic-panel panel-system" id="panel-system">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+                            <h2>SYSTEM INTELLIGENCE</h2>
+                        </div>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Progress Rings Grid -->
+                        <div class="rings-grid">
+                            <!-- Ring 1: CPU -->
+                            <div class="ring-card">
+                                <div class="svg-ring-wrapper">
+                                    <svg viewBox="0 0 100 100" class="ring-svg">
+                                        <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="ring-val ring-cyan" id="ring-cpu-circle" stroke-dasharray="251" stroke-dashoffset="193"/>
+                                    </svg>
+                                    <span class="ring-pct" id="ring-cpu-text">23%</span>
+                                </div>
+                                <span class="ring-label">CPU USAGE</span>
+                            </div>
+
+                            <!-- Ring 2: Memory -->
+                            <div class="ring-card">
+                                <div class="svg-ring-wrapper">
+                                    <svg viewBox="0 0 100 100" class="ring-svg">
+                                        <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="ring-val ring-purple" id="ring-mem-circle" stroke-dasharray="251" stroke-dashoffset="138"/>
+                                    </svg>
+                                    <span class="ring-pct" id="ring-mem-text">45%</span>
+                                </div>
+                                <span class="ring-label">MEMORY</span>
+                            </div>
+
+                            <!-- Ring 3: Storage -->
+                            <div class="ring-card">
+                                <div class="svg-ring-wrapper">
+                                    <svg viewBox="0 0 100 100" class="ring-svg">
+                                        <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="ring-val ring-blue" id="ring-storage-circle" stroke-dasharray="251" stroke-dashoffset="75"/>
+                                    </svg>
+                                    <span class="ring-pct" id="ring-storage-text">70%</span>
+                                </div>
+                                <span class="ring-label">STORAGE</span>
+                            </div>
+
+                            <!-- Ring 4: Network -->
+                            <div class="ring-card">
+                                <div class="svg-ring-wrapper">
+                                    <svg viewBox="0 0 100 100" class="ring-svg">
+                                        <circle cx="50" cy="50" r="40" class="ring-bg"/>
+                                        <circle cx="50" cy="50" r="40" class="ring-val ring-teal" id="ring-net-circle" stroke-dasharray="251" stroke-dashoffset="45"/>
+                                    </svg>
+                                    <span class="ring-pct" id="ring-net-text">82%</span>
+                                </div>
+                                <span class="ring-label">NETWORK</span>
+                            </div>
+                        </div>
+
+                        <!-- Active Processes Table -->
+                        <div class="subpanel-title">ACTIVE PROCESSES</div>
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">AI Core Engine</span>
+                                <span class="proc-status badge-running">Running</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Neural Network</span>
+                                <span class="proc-status badge-running">Running</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Data Analyzer</span>
+                                <span class="proc-status badge-running">Running</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Voice Engine</span>
+                                <span class="proc-status badge-running">Running</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 3: AI Agent Network -->
+                <section class="holographic-panel panel-agents" id="panel-agents">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <h2>AI AGENT NETWORK</h2>
+                        </div>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Network Graph Container -->
+                        <div class="agent-graph-wrapper">
+                            <svg viewBox="0 0 300 220" class="agent-graph-svg">
+                                <!-- Connecting Pulsing Lines -->
+                                <line x1="150" y1="110" x2="80" y2="45" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 2" class="dash-flow"/>
+                                <line x1="150" y1="110" x2="220" y2="45" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 2" class="dash-flow"/>
+                                <line x1="150" y1="110" x2="50" y2="120" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 2" class="dash-flow"/>
+                                <line x1="150" y1="110" x2="250" y2="120" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 2" class="dash-flow"/>
+                                <line x1="150" y1="110" x2="150" y2="185" stroke="var(--cyan)" stroke-width="1.5" stroke-dasharray="4 2" class="dash-flow"/>
+
+                                <!-- Outer Orbit Ring -->
+                                <circle cx="150" cy="110" r="75" fill="none" stroke="rgba(0, 240, 255, 0.15)" stroke-width="1" stroke-dasharray="6 4" class="spin-slow"/>
+                                <circle cx="150" cy="110" r="32" fill="none" stroke="var(--cyan)" stroke-width="1" opacity="0.4" class="node-pulse-ring"/>
+
+                                <!-- Central Core Node -->
+                                <circle cx="150" cy="110" r="24" fill="rgba(0, 240, 255, 0.18)" stroke="var(--cyan)" stroke-width="2"/>
+                                <circle cx="150" cy="110" r="9" fill="var(--cyan)" class="core-glow-pulse"/>
+                                <text x="150" y="113" font-size="8" fill="#fff" text-anchor="middle" font-weight="800">CORE</text>
+
+                                <!-- Node 1: Research Agent -->
+                                <circle cx="80" cy="45" r="20" fill="none" stroke="var(--blue)" stroke-width="1" opacity="0.3" class="node-pulse-ring"/>
+                                <circle cx="80" cy="45" r="14" fill="rgba(10, 132, 255, 0.25)" stroke="var(--blue)" stroke-width="1.5"/>
+                                <circle cx="80" cy="45" r="5" fill="var(--blue)"/>
+                                <text x="80" y="22" font-size="9" fill="var(--blue)" text-anchor="middle" font-weight="700">Research Agent</text>
+
+                                <!-- Node 2: Coding Agent -->
+                                <circle cx="220" cy="45" r="20" fill="none" stroke="var(--purple)" stroke-width="1" opacity="0.3" class="node-pulse-ring"/>
+                                <circle cx="220" cy="45" r="14" fill="rgba(162, 89, 255, 0.25)" stroke="var(--purple)" stroke-width="1.5"/>
+                                <circle cx="220" cy="45" r="5" fill="var(--purple)"/>
+                                <text x="220" y="22" font-size="9" fill="var(--purple)" text-anchor="middle" font-weight="700">Coding Agent</text>
+
+                                <!-- Node 3: Automation Agent -->
+                                <circle cx="50" cy="120" r="20" fill="none" stroke="var(--teal)" stroke-width="1" opacity="0.3" class="node-pulse-ring"/>
+                                <circle cx="50" cy="120" r="14" fill="rgba(0, 255, 200, 0.25)" stroke="var(--teal)" stroke-width="1.5"/>
+                                <circle cx="50" cy="120" r="5" fill="var(--teal)"/>
+                                <text x="50" y="148" font-size="9" fill="var(--teal)" text-anchor="middle" font-weight="700">Automation</text>
+
+                                <!-- Node 4: Security Agent -->
+                                <circle cx="250" cy="120" r="20" fill="none" stroke="var(--warning)" stroke-width="1" opacity="0.3" class="node-pulse-ring"/>
+                                <circle cx="250" cy="120" r="14" fill="rgba(251, 191, 36, 0.25)" stroke="var(--warning)" stroke-width="1.5"/>
+                                <circle cx="250" cy="120" r="5" fill="var(--warning)"/>
+                                <text x="250" y="148" font-size="9" fill="var(--warning)" text-anchor="middle" font-weight="700">Security Agent</text>
+
+                                <!-- Node 5: Memory Agent -->
+                                <circle cx="150" cy="185" r="20" fill="none" stroke="var(--cyan)" stroke-width="1" opacity="0.3" class="node-pulse-ring"/>
+                                <circle cx="150" cy="185" r="14" fill="rgba(56, 189, 248, 0.25)" stroke="var(--cyan)" stroke-width="1.5"/>
+                                <circle cx="150" cy="185" r="5" fill="var(--cyan)"/>
+                                <text x="150" y="210" font-size="9" fill="var(--cyan)" text-anchor="middle" font-weight="700">Memory Agent</text>
+                            </svg>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 4: Voice Console -->
+                <section class="holographic-panel panel-voice" id="panel-voice">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+                            <h2>VOICE CONSOLE</h2>
+                        </div>
+                        <div id="voice-state-pill" class="pill-badge state-standby">STANDBY</div>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Waveform Canvas -->
+                        <div class="waveform-container">
+                            <canvas id="waveform-canvas" width="300" height="70"></canvas>
+                        </div>
+
+                        <div class="voice-controls-row">
+                            <button id="btn-mic-toggle" class="voice-mic-main-btn">
+                                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                            </button>
+                            <select id="stt-lang-select" class="voice-lang-select">
+                                <option value="en">ENGLISH (US)</option>
+                                <option value="ta">TAMIL (IN)</option>
+                                <option value="auto">AUTO-DETECT</option>
+                            </select>
+                        </div>
+
+
+                        <!-- Voice History -->
+                        <div class="subpanel-title">COMMAND HISTORY</div>
+                        <div id="voice-history-list" class="voice-history-feed">
+                            <div class="voice-hist-item">
+                                <span class="hist-time">08:40 PM</span>
+                                <span class="hist-text">Open Stark Industries Website</span>
+                            </div>
+                            <div class="voice-hist-item">
+                                <span class="hist-time">08:38 PM</span>
+                                <span class="hist-text">Show me system analytics</span>
+                            </div>
+                            <div class="voice-hist-item">
+                                <span class="hist-time">08:35 PM</span>
+                                <span class="hist-text">Schedule meeting with Pepper</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 5: Recent Tasks & Reminders -->
+                <section class="holographic-panel panel-tasks" id="panel-tasks">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <h2>TASK & REMINDER BOARD</h2>
+                        </div>
+                        <span class="tasks-pending-badge" id="tasks-pending-badge">0 PENDING</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Task Add Input -->
+                        <div class="task-add-bar">
+                            <input type="text" id="task-text-input" placeholder="New task or reminder..." autocomplete="off">
+                            <input type="number" id="task-due-input" placeholder="Due (mins)" min="1" max="1440">
+                            <button id="btn-add-task">+ ADD TASK</button>
+                        </div>
+
+                        <!-- Filter Tabs -->
+                        <div class="task-tabs">
+                            <button class="task-tab active" data-filter="pending">Pending</button>
+                            <button class="task-tab" data-filter="all">All Tasks</button>
+                            <button class="task-tab" data-filter="completed">Completed</button>
+                        </div>
+
+                        <!-- Tasks Feed -->
+                        <div id="task-items-container" class="task-feed-list">
+                            <p class="placeholder-text">No pending tasks. JARVIS standing by.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 6: Memory Intelligence -->
+                <section class="holographic-panel panel-memory" id="panel-memory">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2zm0 18a8 8 0 1 1 8-8 8 8 0 0 1-8 8z"/></svg>
+                            <h2>MEMORY INTELLIGENCE</h2>
+                        </div>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Neural Core Graphic -->
+                        <div class="memory-graph-wrapper">
+                            <svg viewBox="0 0 260 140" class="memory-graph-svg">
+                                <circle cx="130" cy="70" r="50" fill="none" stroke="var(--cyan)" stroke-width="1" stroke-dasharray="3 3" class="spin-slow"/>
+                                <circle cx="130" cy="70" r="30" fill="rgba(0, 240, 255, 0.1)" stroke="var(--arc-blue)" stroke-width="2"/>
+                                <circle cx="130" cy="70" r="10" fill="var(--cyan)" class="core-glow-pulse"/>
+                                <text x="130" y="73" font-size="8" fill="#fff" text-anchor="middle" font-weight="700">MEMORY CORE</text>
+
+                                <!-- Surrounding Nodes -->
+                                <circle cx="50" cy="30" r="4" fill="var(--purple)"/>
+                                <line x1="130" y1="70" x2="50" y2="30" stroke="var(--purple)" stroke-width="1" opacity="0.6"/>
+
+                                <circle cx="210" cy="30" r="4" fill="var(--teal)"/>
+                                <line x1="130" y1="70" x2="210" y2="30" stroke="var(--teal)" stroke-width="1" opacity="0.6"/>
+
+                                <circle cx="40" cy="100" r="4" fill="var(--cyan)"/>
+                                <line x1="130" y1="70" x2="40" y2="100" stroke="var(--cyan)" stroke-width="1" opacity="0.6"/>
+
+                                <circle cx="220" cy="100" r="4" fill="var(--blue)"/>
+                                <line x1="130" y1="70" x2="220" y2="100" stroke="var(--blue)" stroke-width="1" opacity="0.6"/>
+                            </svg>
+                        </div>
+
+                        <!-- Stats Row -->
+                        <div class="memory-metrics-row">
+                            <div class="mem-metric">
+                                <span class="mem-val" id="mem-total-val">12,458</span>
+                                <span class="mem-lbl">Total Memories</span>
+                            </div>
+                            <div class="mem-metric">
+                                <span class="mem-val" id="mem-rel-val">8,742</span>
+                                <span class="mem-lbl">Relationships</span>
+                            </div>
+                            <div class="mem-metric">
+                                <span class="mem-val" id="mem-ctx-val">2,145</span>
+                                <span class="mem-lbl">Contexts</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 7: Analytics Center -->
+                <section class="holographic-panel panel-analytics" id="panel-analytics">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                            <h2>ANALYTICS CENTER</h2>
+                        </div>
+                        <span class="period-tag">This Week</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <!-- Chart SVG -->
+                        <div class="chart-wrapper">
+                            <svg viewBox="0 0 300 90" class="analytics-chart-svg">
+                                <defs>
+                                    <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                                        <stop offset="0%" stop-color="var(--cyan)" stop-opacity="0.4"/>
+                                        <stop offset="100%" stop-color="var(--cyan)" stop-opacity="0"/>
+                                    </linearGradient>
+                                </defs>
+                                <path d="M0,70 Q40,30 80,50 T160,20 T240,40 T300,10 L300,90 L0,90 Z" fill="url(#chartGrad)"/>
+                                <path d="M0,70 Q40,30 80,50 T160,20 T240,40 T300,10" fill="none" stroke="var(--cyan)" stroke-width="2"/>
+                            </svg>
+                        </div>
+
+                        <!-- Stat Counters Grid -->
+                        <div class="analytics-stats-grid">
+                            <div class="ana-stat">
+                                <span class="ana-lbl">COMMANDS</span>
+                                <span class="ana-num" id="ana-cmds-num">1,248</span>
+                                <span class="ana-change text-teal">+12.5%</span>
+                            </div>
+                            <div class="ana-stat">
+                                <span class="ana-lbl">AUTOMATIONS</span>
+                                <span class="ana-num" id="ana-auto-num">342</span>
+                                <span class="ana-change text-teal">+8.3%</span>
+                            </div>
+                            <div class="ana-stat">
+                                <span class="ana-lbl">SUCCESS RATE</span>
+                                <span class="ana-num" id="ana-succ-num">98.7%</span>
+                                <span class="ana-change text-teal">+2.1%</span>
+                            </div>
+                            <div class="ana-stat">
+                                <span class="ana-lbl">USAGE TIME</span>
+                                <span class="ana-num" id="ana-time-num">24.5h</span>
+                                <span class="ana-change text-teal">+15.2%</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 8: Command Center -->
+                <section class="holographic-panel panel-command-center" id="panel-command-center">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <h2>COMMAND CENTER & OVERRIDE</h2>
+                        </div>
+                        <span class="period-tag">LEVEL 5 ACCESS</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="subpanel-title">SYSTEM MACROS & OVERRIDES</div>
+                        <div class="prompt-chips-row">
+                            <button class="chip-btn" data-prompt="System status report">Full System Scan</button>
+                            <button class="chip-btn" data-prompt="Take a screenshot">Capture Screen</button>
+                            <button class="chip-btn" data-prompt="Open YouTube">Launch Media Hub</button>
+                            <button class="chip-btn" data-prompt="Search Google for latest tech news">Fetch Tech News</button>
+                        </div>
+                        <div class="subpanel-title">LIVE SYSTEM LOG FEED</div>
+                        <div id="command-center-logs" class="voice-history-feed" style="max-height: 110px;">
+                            <div class="voice-hist-item"><span class="hist-time">10:52 PM</span><span class="hist-text">[SYS] Neural kernel initialized cleanly.</span></div>
+                            <div class="voice-hist-item"><span class="hist-time">10:50 PM</span><span class="hist-text">[SEC] Zero breach attempts detected. Encryption active.</span></div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 9: Automations -->
+                <section class="holographic-panel panel-automations" id="panel-automations">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                            <h2>AUTOMATION PIPELINES</h2>
+                        </div>
+                        <span class="period-tag">4 ACTIVE</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">YouTube Audio Streamer</span>
+                                <span class="proc-status badge-running">Active</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Daily Schedule Summarizer</span>
+                                <span class="proc-status badge-running">Active</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Playwright Browser Driver</span>
+                                <span class="proc-status badge-running">Ready</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Reminder Alert Dispatcher</span>
+                                <span class="proc-status badge-running">Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 10: Knowledge Base -->
+                <section class="holographic-panel panel-kb" id="panel-kb">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            <h2>KNOWLEDGE BASE & RAG</h2>
+                        </div>
+                        <span class="period-tag">1,240 ENTRIES</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">Stark Tech Specifications</span>
+                                <span class="proc-status badge-running">Indexed</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">JARVIS AI Architecture Docs</span>
+                                <span class="proc-status badge-running">Indexed</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Python Core Service Schemas</span>
+                                <span class="proc-status badge-running">Indexed</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 11: Documents -->
+                <section class="holographic-panel panel-documents" id="panel-documents">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                            <h2>DOCUMENT INTELLIGENCE</h2>
+                        </div>
+                        <span class="period-tag">3 FILES</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">Stark_Industries_Briefing.pdf</span>
+                                <span class="proc-status badge-running">Parsed</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">System_Topology.json</span>
+                                <span class="proc-status badge-running">Loaded</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Security_Audit_Report.docx</span>
+                                <span class="proc-status badge-running">Verified</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 12: Security Center -->
+                <section class="holographic-panel panel-security" id="panel-security">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <h2>SECURITY & THREAT SHIELD</h2>
+                        </div>
+                        <span class="period-tag text-teal">SECURE</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">Encryption Protocol</span>
+                                <span class="proc-status badge-running">AES-256 GCM</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Firewall Shield</span>
+                                <span class="proc-status badge-running">0 Breaches</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">API Key Integrity</span>
+                                <span class="proc-status badge-running">100% Validated</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- PANEL 13: System Settings -->
+                <section class="holographic-panel panel-settings" id="panel-settings">
+                    <div class="panel-header">
+                        <div class="panel-title">
+                            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+                            <h2>JARVIS SYSTEM CONFIGURATION</h2>
+                        </div>
+                        <span class="period-tag">v2.0 HUD</span>
+                    </div>
+
+                    <div class="panel-body flex-col">
+                        <div class="processes-list">
+                            <div class="process-item">
+                                <span class="proc-name">Speech-to-Text Model</span>
+                                <span class="proc-status badge-running">Faster-Whisper</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Voice Synthesis Provider</span>
+                                <span class="proc-status badge-running">ElevenLabs / SAPI5</span>
+                            </div>
+                            <div class="process-item">
+                                <span class="proc-name">Web Interface Theme</span>
+                                <span class="proc-status badge-running">Holographic Cyberpunk</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <!-- ── Bottom System Status Footer ───────────────────────────── -->
+            <footer id="footer-bar">
+                <span class="footer-status-label">JARVIS STATUS: <strong class="text-cyan">ONLINE</strong></span>
+                <div class="footer-reactor-center">
+                    <span class="reactor-outer-ring"></span>
+                    <span class="reactor-inner-core"></span>
+                </div>
+                <span class="footer-system-label">ALL SYSTEMS OPERATIONAL</span>
+            </footer>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>

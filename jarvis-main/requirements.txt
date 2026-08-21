@@ -1,0 +1,2 @@
+# ── JARVIS AI OS — Unified Dependencies (referencing root requirements.txt) ──
+-r ../requirements.txt
